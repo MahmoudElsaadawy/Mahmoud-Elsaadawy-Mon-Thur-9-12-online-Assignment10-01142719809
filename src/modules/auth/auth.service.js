@@ -27,10 +27,7 @@ export const signUp = async (req, res, next) => {
   successResponse({
     res,
     message: "User Created Successfully",
-    data: {
-      "encrypted phone": userCreated.phone,
-      "hashed password": userCreated.password,
-    },
+    data: userCreated,
   });
 };
 
@@ -52,6 +49,7 @@ export const login = async (req, res, next) => {
     message: "User logged in Successfully",
     data: {
       "encrypted phone": user.phone,
+      "decrypted phone": decrypt(user.phone),
       "hashed password": user.password,
     },
   });
